@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link th:href="@{/css/Main.css}" rel="stylesheet">
+    <style>
+        select.form-control {
+            max-height: 150px;
+            width: 100%;
+            font-size: 14px;
+            overflow-y: auto;
+        }
+
+        select.form-control option {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        table td,
+        table th {
+            font-size: 80%;
+        }
+
+        .dropdown-scroll {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .table th,
+        .table td {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid" th:fragment="content">       
+        <div class="row">
+            <div class="col-md-9 mt-3">
+                <div class="danh-muc-sp">
+                    <h2>Nhập hàng</h2>
+                    <form method="post" th:action="@{/phieu-nhap/them-san-pham-vao-gio}" th:object="${sanPhamNhap}">
+                        <form method="post" th:action="@{/phieu-nhap/them-san-pham-vao-gio}" th:object="${sanPhamNhap}">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Sản phẩm</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.tenSanPham}">
+                                            <option th:each="sp : ${sanPham}" th:value="${sp.id}"
+                                                th:text="${sp.tenSanPham}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Thương hiệu</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.thuongHieu}">
+                                            <option th:each="th : ${thuongHieu}" th:value="${th.id}"
+                                                th:text="${th.tenThuongHieu}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Xuất xứ</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.xuatXu}">
+                                            <option th:each="xx : ${xuatXu}" th:value="${xx.id}" th:text="${xx.xuatXu}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Công nghệ</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.congNghe}">
+                                            <option th:each="cn : ${congNghe}" th:value="${cn.id}"
+                                                th:text="${cn.tenCongNghe}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Chiều dài</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.chieuDaiVot}">
+                                            <option th:each="cd : ${chieuDai}" th:value="${cd.id}"
+                                                th:text="${#numbers.formatDecimal(cd.chieuDaiVot, 1, 2)}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Swing Weight</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.swingWeight}">
+                                            <option th:each="sw : ${swing}" th:value="${sw.id}" th:text="${sw.mucDo}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Độ cứng</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.doCungDua}">
+                                            <option th:each="dc : ${doCung}" th:value="${dc.id}" th:text="${dc.tenDoCung}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Trọng lượng</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{sanPhamChiTiet.trongLuong}">
+                                            <option th:each="tl : ${trongLuong}" th:value="${tl.id}" th:text="${tl.kiHieu}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Nhà kho</label>
+                                    <div class="dropdown-scroll">
+                                        <select class="form-control" th:field="*{nhaKho.id}">
+                                            <option th:each="nk : ${nhaKho}" th:value="${nk.id}" th:text="${nk.khuVucKho}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label">Giá tiền</label>
+                                    <input class="form-control" type="number" th:field="*{phieuNhapChiTiet.giaNhap}">
+                                </div>
+                                <div class="col-md-2 mb-3">
+                                    <label class="form-label">Số lượng</label>
+                                    <input class="form-control" type="number" th:field="*{phieuNhapChiTiet.soLuong}">
+                                </div>
+                            </div>
+    
+                            <button type="submit" class="btn btn-primary mt-3">Thêm vào giỏ hàng</button>
+                            <button type="reset" class="btn btn-secondary mt-3">Reset</button>
+                        </form>
+                    </form>
+                </div>
+                <div class="gio-hang mt-3">
+                    <h3>Giỏ hàng</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Thương hiệu</th>
+                                    <th>Xuất xứ</th>
+                                    <th>Trọng lượng</th>
+                                    <th>Swingweight</th>
+                                    <th>Độ cứng</th>
+                                    <th>Công nghệ</th>
+                                    <th>Chiều dài</th>
+                                    <th>Khu vực kho</th>
+                                    <th>Giá tiền</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="gh,status : ${listPhieuNhapChiTiets}">
+                                    <td th:text="${gh.id}" hidden></td>
+                                    <td th:text="${status.index + 1}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.tenSanPham.tenSanPham}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.thuongHieu.tenThuongHieu}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.xuatXu.xuatXu}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.trongLuong.kiHieu}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.swingWeight.mucDo}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.doCungDua.tenDoCung}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.congNghe.tenCongNghe}"></td>
+                                    <td th:text="${gh.sanPhamChiTiet.chieuDaiVot.chieuDaiVot}"></td>
+                                    <td th:text="${gh.nhaKho.khuVucKho}"></td>
+                                    <td th:text="${gh.giaNhap}"></td>
+                                    <td th:text="${gh.soLuong}"></td>
+                                    <td th:text="${gh.thanhTien}"></td>
+                                    <td th:text="${gh.trangThai == 1?'Đã thanh toán':'Chưa thanh toán'}"></td>
+                                    <td class="d-flex gap-2">
+                                        <a class="btn btn-success btn-sm">Chỉnh sửa</a>
+                                        <a class="btn btn-danger btn-sm">Xoá</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-5" style="border-left: 1px solid gainsboro;">
+                <form th:action="@{/phieu-nhap/nhap-hang}" th:object="${phieuNhap}" method="post">
+                    <form th:action="@{/phieu-nhap/nhap-hang}" th:object="${phieuNhap}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Nhà cung cấp</label>
+                            <select class="form-control" th:field="*{nhaCungCap}">
+                                <option th:each="ncc : ${nhaCungCap}" th:value="${ncc.id}" th:text="${ncc.tenNhaCC}">
+                                </option>
+                            </select>
+                        </div>
+                        <p class="my-2"><strong>Tổng tiền:</strong> <span th:text="${#numbers.formatDecimal(tongTien, 1, 2)}" style="color: red;"></span>
+                            VNĐ</p>
+                        <button class="btn btn-primary mt-2" type="submit">Nhập hàng</button>
+                        <button class="btn btn-danger mt-2" type="submit">Huỷ</button>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

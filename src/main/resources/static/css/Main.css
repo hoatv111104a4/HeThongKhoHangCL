@@ -1,0 +1,40 @@
+.error{
+    color: red;
+}
+select.form-control {
+    max-height: 150px;
+    width: 100%;
+    font-size: 14px;
+    overflow-y: auto;
+}
+
+select.form-control option {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table td,
+table th {
+    font-size: 80%;
+}
+
+.dropdown-scroll {
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table th,
+.table td {
+    white-space: nowrap;
+}
+
+
+
+
+
+
