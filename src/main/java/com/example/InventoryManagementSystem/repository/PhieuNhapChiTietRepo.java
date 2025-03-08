@@ -13,4 +13,6 @@ public interface PhieuNhapChiTietRepo extends JpaRepository<PhieuNhapChiTiet,Int
 
     @Query(value = "SELECT * FROM phieu_nhap_ct where trang_thai = 0 order by ngay_tao desc",nativeQuery = true)
     List<PhieuNhapChiTiet> getAllPhieuNhap();
+
+    
 }

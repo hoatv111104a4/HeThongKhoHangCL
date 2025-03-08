@@ -42,8 +42,16 @@ public class SanPhamChiTietService {
         return sanPhamCtRepo.searcTenSpAndGiaTien(pageable,giaMax,giaMax,tenSanPham);
     }
 
+    public Page<SanPhamChiTietProjection> searchSanPhamCt(int page,int size,Double giaMin,Double giaMax,String tenSanPham,Integer thuongHieu, Integer xuatXu, Integer congNghe, Integer swingWeight, Integer trongLuong){
+        Pageable pageable = PageRequest.of(page, size);
+        return sanPhamCtRepo.searchSanPham(pageable, giaMin, giaMax, tenSanPham, thuongHieu, xuatXu, congNghe, swingWeight, trongLuong);
+    }
+
     public SanPhamChiTiet getIdSPCT(Long id){
         return sanPhamCtRepo.findById(id).get();
+    }
+    public void xoaCungSanPhamChiTiet(Long id){
+        sanPhamCtRepo.deleteById(id);
     }
 
 }

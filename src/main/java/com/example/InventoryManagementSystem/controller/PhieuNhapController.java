@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,7 +104,7 @@ public class PhieuNhapController {
         model.addAttribute("nhanViens", nhanVienService.getAllNhanVien());
         List<PhieuNhapChiTiet> listPhieuNhapChiTiets = phieuNhapChiTietService.getAllPhieuNhaps();
         model.addAttribute("listPhieuNhapChiTiets", listPhieuNhapChiTiets);
-
+        session.setAttribute("phieuNhapClicked", true);
         model.addAttribute("content", "adds/ThemPhieuNhap");        
         return "Home/TrangChu";
         
@@ -112,7 +113,7 @@ public class PhieuNhapController {
 
     @PostMapping("/them-san-pham-vao-gio")
     public String themSanPhamVaoGio(@ModelAttribute("sanPhamNhap") SanPhamNhapDto sanPhamNhapDTO,
-            RedirectAttributes redirectAttributes,HttpSession session ) {
+            RedirectAttributes redirectAttributes,HttpSession session) {
 
         SanPhamChiTiet sanPhamChiTiet = sanPhamNhapDTO.getSanPhamChiTiet();
         PhieuNhapChiTiet phieuNhapChiTiet = sanPhamNhapDTO.getPhieuNhapChiTiet();
@@ -120,7 +121,7 @@ public class PhieuNhapController {
         PhieuNhap phieuNhap = phieuNhapService.taoPhieuNhap(session);
         phieuNhapService.themSanPhamVaPhieuNhapChiTiet(sanPhamChiTiet, phieuNhapChiTiet, nhaKho,phieuNhap);
         // Lấy danh sách sản phẩm trong giỏ hàng
-        List<PhieuNhapChiTiet> danhSachChiTiet = phieuNhapService.layDanhSachPhieuNhapChiTiet();
+        List<PhieuNhapChiTiet> danhSachChiTiet = phieuNhapService.layDanhSachPhieuNhapChiTiet(phieuNhap);
 
         // Tính tổng tiền từ danh sách trên
         double tongTien = phieuNhapService.tinhTongTienGioHang(danhSachChiTiet);
@@ -148,4 +149,18 @@ public class PhieuNhapController {
         model.addAttribute("totalPage", phieuNhapPage.getTotalPages());
         model.addAttribute("phieuNhap", new PhieuNhap());
     }
+
+    @GetMapping("/huy-phieu-chi-tiet/{id}")
+    public String huyPhieuChiTiet(@PathVariable("id") int idgh){
+        PhieuNhapChiTiet phieuNhapChiTiet = phieuNhapChiTietService.getByIdPhieuNhapCt(idgh);
+        if (phieuNhapChiTiet!=null) {
+            Long idSpCt = phieuNhapChiTiet.getSanPhamChiTiet().getId();
+            phieuNhapChiTietService.deletePhieuNhapCt(idgh);
+            sanPhamChiTietService.xoaCungSanPhamChiTiet(idSpCt);
+        }      
+        
+        return "redirect:/phieu-nhap/tao-phieu-nhap";
+    }
+
+    
 }

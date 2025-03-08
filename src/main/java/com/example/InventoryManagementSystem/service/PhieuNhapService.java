@@ -57,23 +57,23 @@ public class PhieuNhapService {
     public SanPhamChiTiet themSanPhamVaPhieuNhapChiTiet(SanPhamChiTiet sanPhamChiTiet,
         PhieuNhapChiTiet phieuNhapChiTiet, NhaKho nhaKho, PhieuNhap phieuNhap) {
     
-    // 1️ Kiểm tra & tạo mã sản phẩm nếu chưa có
+    // 1Kiểm tra & tạo mã sản phẩm nếu chưa có
     if (sanPhamChiTiet.getMaSanPham() == null || sanPhamChiTiet.getMaSanPham().trim().isEmpty()) {
         sanPhamChiTiet.setMaSanPham("SPCT-" + UUID.randomUUID().toString().substring(0, 8));
     }
     sanPhamChiTiet.setNgayTao(new Date());
     sanPhamChiTiet.setTrangThai(1);
 
-    // 2️ Lưu sản phẩm chi tiết
+    // 2 Lưu sản phẩm chi tiết
     SanPhamChiTiet savedSanPham = sanPhamCtRepo.save(sanPhamChiTiet);
 
-    // 3️ Thiết lập sản phẩm cho phiếu nhập chi tiết
+    // 3 Thiết lập sản phẩm cho phiếu nhập chi tiết
     phieuNhapChiTiet.setSanPhamChiTiet(savedSanPham);
     phieuNhapChiTiet.setPhieuNhap(phieuNhap);
     phieuNhapChiTiet.setNhaKho(nhaKho);
     phieuNhapChiTiet.setTrangThai(0); // Sản phẩm mới thêm vào, chưa nhập hàng
 
-    // 4️ Kiểm tra & cập nhật kho
+    // 4 Kiểm tra & cập nhật kho
     Optional<SpctNhaKho> existingSpctNhaKho = sanPhamCtNhaKhoRepo
             .findBySanPhamChiTietIdAndNhaKhoId(savedSanPham.getId(), nhaKho.getId().longValue());
 
@@ -91,15 +91,15 @@ public class PhieuNhapService {
         sanPhamCtNhaKhoRepo.save(spctNhaKho);
     }
 
-    // 5️ Lưu phiếu nhập chi tiết sau khi đã thiết lập đầy đủ thông tin
+    // 5 Lưu phiếu nhập chi tiết sau khi đã thiết lập đầy đủ thông tin
     phieuNhapChiTietRepo.save(phieuNhapChiTiet);
 
     return savedSanPham;
 }
 
 
-    public List<PhieuNhapChiTiet> layDanhSachPhieuNhapChiTiet() {
-        return phieuNhapChiTietRepo.findAll(); // Hoặc logic lấy danh sách giỏ hàng
+    public List<PhieuNhapChiTiet> layDanhSachPhieuNhapChiTiet(PhieuNhap phieuNhap) {
+        return phieuNhapChiTietRepo.findByPhieuNhap(phieuNhap);
     }
 
     public double tinhTongTienGioHang(List<PhieuNhapChiTiet> danhSachChiTiet) {

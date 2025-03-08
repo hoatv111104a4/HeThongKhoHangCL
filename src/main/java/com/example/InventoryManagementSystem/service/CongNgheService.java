@@ -42,4 +42,6 @@ public class CongNgheService {
     public List<CongNghe> listCongNghe(){
         return congNgheRepoITF.listCongNghe();
     }
+    
+
 }

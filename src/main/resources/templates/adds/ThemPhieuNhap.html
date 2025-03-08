@@ -202,7 +202,7 @@
                                     <td th:text="${gh.trangThai == 1?'Đã thanh toán':'Chưa thanh toán'}"></td>
                                     <td class="d-flex gap-2">
                                         <a class="btn btn-success btn-sm">Chỉnh sửa</a>
-                                        <a class="btn btn-danger btn-sm">Xoá</a>
+                                        <a class="btn btn-danger btn-sm" th:href="@{/phieu-nhap/huy-phieu-chi-tiet/{id}(id=${gh.id})}">Xoá</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -212,19 +212,17 @@
             </div>
             <div class="col-md-3 mt-5" style="border-left: 1px solid gainsboro;">
                 <form th:action="@{/phieu-nhap/nhap-hang}" th:object="${phieuNhap}" method="post">
-                    <form th:action="@{/phieu-nhap/nhap-hang}" th:object="${phieuNhap}" method="post">
-                        <div class="mb-3">
-                            <label class="form-label">Nhà cung cấp</label>
-                            <select class="form-control" th:field="*{nhaCungCap}">
-                                <option th:each="ncc : ${nhaCungCap}" th:value="${ncc.id}" th:text="${ncc.tenNhaCC}">
-                                </option>
-                            </select>
-                        </div>
-                        <p class="my-2"><strong>Tổng tiền:</strong> <span th:text="${#numbers.formatDecimal(tongTien, 1, 2)}" style="color: red;"></span>
-                            VNĐ</p>
-                        <button class="btn btn-primary mt-2" type="submit">Nhập hàng</button>
-                        <button class="btn btn-danger mt-2" type="submit">Huỷ</button>
-                    </form>
+                    <div class="mb-3">
+                        <label class="form-label">Nhà cung cấp</label>
+                        <select class="form-control" th:field="*{nhaCungCap}">
+                            <option th:each="ncc : ${nhaCungCap}" th:value="${ncc.id}" th:text="${ncc.tenNhaCC}">
+                            </option>
+                        </select>
+                    </div>
+                    <p class="my-2"><strong>Tổng tiền:</strong> <span th:text="${#numbers.formatDecimal(tongTien, 1, 2)}" style="color: red;"></span>
+                        VNĐ</p>
+                    <button class="btn btn-primary mt-2" type="submit">Nhập hàng</button>
+                    <button class="btn btn-danger mt-2" type="submit" >Huỷ</button>
                 </form>
             </div>
         </div>

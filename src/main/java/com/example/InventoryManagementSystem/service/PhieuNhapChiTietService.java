@@ -17,4 +17,11 @@ public class PhieuNhapChiTietService {
     public List<PhieuNhapChiTiet> getAllPhieuNhaps(){
         return phieuNhapChiTietRepo.getAllPhieuNhap();
     }
+
+    public void deletePhieuNhapCt(int id){
+        phieuNhapChiTietRepo.deleteById(id);        
+    }
+    public PhieuNhapChiTiet getByIdPhieuNhapCt(Integer id){
+        return phieuNhapChiTietRepo.findById(id).get();
+    }
 }
