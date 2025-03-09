@@ -24,4 +24,7 @@ public class PhieuNhapChiTietService {
     public PhieuNhapChiTiet getByIdPhieuNhapCt(Integer id){
         return phieuNhapChiTietRepo.findById(id).get();
     }
+    public List<PhieuNhapChiTiet> chiTietPhieuNhap(Long id){
+        return phieuNhapChiTietRepo.findByIdPhieuNhap(id);
+    }
 }

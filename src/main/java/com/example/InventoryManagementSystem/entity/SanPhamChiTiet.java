@@ -64,7 +64,7 @@ public class SanPhamChiTiet {
     @JoinColumn(name = "id_chieu_dai")
     private ChieuDaiVot chieuDaiVot;
 
-    @OneToMany(mappedBy = "sanPhamChiTiet",cascade = {CascadeType.PERSIST,CascadeType.MERGE},orphanRemoval = true)
+    @OneToMany(mappedBy = "sanPhamChiTiet",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<SpctNhaKho> spctNhaKhos = new ArrayList<>();;
 
     private Double giaTien;

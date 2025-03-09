@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    <div class="container-fluid" th:fragment="content">       
+    <div class="container-fluid" th:fragment="content">
         <div class="row">
             <div class="col-md-9 mt-3">
                 <div class="danh-muc-sp">
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Công nghệ</label>
@@ -113,13 +113,14 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Độ cứng</label>
                                     <div class="dropdown-scroll">
                                         <select class="form-control" th:field="*{sanPhamChiTiet.doCungDua}">
-                                            <option th:each="dc : ${doCung}" th:value="${dc.id}" th:text="${dc.tenDoCung}">
+                                            <option th:each="dc : ${doCung}" th:value="${dc.id}"
+                                                th:text="${dc.tenDoCung}">
                                             </option>
                                         </select>
                                     </div>
@@ -128,7 +129,8 @@
                                     <label class="form-label">Trọng lượng</label>
                                     <div class="dropdown-scroll">
                                         <select class="form-control" th:field="*{sanPhamChiTiet.trongLuong}">
-                                            <option th:each="tl : ${trongLuong}" th:value="${tl.id}" th:text="${tl.kiHieu}">
+                                            <option th:each="tl : ${trongLuong}" th:value="${tl.id}"
+                                                th:text="${tl.kiHieu}">
                                             </option>
                                         </select>
                                     </div>
@@ -137,24 +139,25 @@
                                     <label class="form-label">Nhà kho</label>
                                     <div class="dropdown-scroll">
                                         <select class="form-control" th:field="*{nhaKho.id}">
-                                            <option th:each="nk : ${nhaKho}" th:value="${nk.id}" th:text="${nk.khuVucKho}">
+                                            <option th:each="nk : ${nhaKho}" th:value="${nk.id}"
+                                                th:text="${nk.khuVucKho}">
                                             </option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Giá tiền</label>
-                                    <input class="form-control" type="number" th:field="*{phieuNhapChiTiet.giaNhap}">
+                                    <input class="form-control" type="number" th:field="*{phieuNhapChiTiet.giaNhap}" required min="1000">
                                 </div>
                                 <div class="col-md-2 mb-3">
                                     <label class="form-label">Số lượng</label>
-                                    <input class="form-control" type="number" th:field="*{phieuNhapChiTiet.soLuong}">
+                                    <input class="form-control" type="number" th:field="*{phieuNhapChiTiet.soLuong}" required min="1">
                                 </div>
                             </div>
-    
+
                             <button type="submit" class="btn btn-primary mt-3">Thêm vào giỏ hàng</button>
                             <button type="reset" class="btn btn-secondary mt-3">Reset</button>
                         </form>
@@ -202,7 +205,8 @@
                                     <td th:text="${gh.trangThai == 1?'Đã thanh toán':'Chưa thanh toán'}"></td>
                                     <td class="d-flex gap-2">
                                         <a class="btn btn-success btn-sm">Chỉnh sửa</a>
-                                        <a class="btn btn-danger btn-sm" th:href="@{/phieu-nhap/huy-phieu-chi-tiet/{id}(id=${gh.id})}">Xoá</a>
+                                        <a class="btn btn-danger btn-sm"
+                                            th:href="@{/phieu-nhap/huy-phieu-chi-tiet/{id}(id=${gh.id})}">Xoá</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -219,10 +223,24 @@
                             </option>
                         </select>
                     </div>
-                    <p class="my-2"><strong>Tổng tiền:</strong> <span th:text="${#numbers.formatDecimal(tongTien, 1, 2)}" style="color: red;"></span>
+                    <p class="my-2"><strong>Tổng tiền:</strong> <span
+                            th:text="${#numbers.formatDecimal(session.tongTien, 1, 2)}" style="color: red;"></span>
                         VNĐ</p>
                     <button class="btn btn-primary mt-2" type="submit">Nhập hàng</button>
-                    <button class="btn btn-danger mt-2" type="submit" >Huỷ</button>
+                    <th:block th:if="${IdphieuNhap != null}">
+                        <button class="btn btn-danger mt-2" type="submit"
+                            th:formaction="@{/phieu-nhap/huy-phieu-nhap/{id}(id=${IdphieuNhap})}">
+                            Huỷ
+                        </button>
+                    </th:block>
+
+                    <th:block th:if="${IdphieuNhap == null}">
+                        <button class="btn btn-warning mt-2" type="button"
+                            onclick="window.location.href='/phieu-nhap/hien-thi'">
+                            Quay lại
+                        </button>
+                    </th:block>
+
                 </form>
             </div>
         </div>

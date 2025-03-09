@@ -14,6 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,11 +33,13 @@ public class NhanVien {
     private String tenNhanVien;
     private LocalDate ngaySinh;
     private Boolean gioiTinh;
+    
     private String email;
     private String soDienThoai;
     @ManyToOne
     @JoinColumn(name = "id_chuc_vu")
     private ChucVu chucVu;
+    
     private String matKhau;
     private Date ngayTao;
     private Date ngaySua;

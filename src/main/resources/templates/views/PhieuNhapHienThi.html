@@ -66,22 +66,22 @@
                     <th>Trạng thái</th>
                     <th>Hành động</th>
                 </tr>
-                <tr th:each=" phieunhap,status: ${phieuNhapPage}">
+                <tr th:each="phieunhap, status : ${phieuNhapPage}">
                     <td th:text="${phieunhap.id}" hidden></td>
                     <td th:text="${status.index + 1}"></td>
                     <td th:text="${phieunhap.maPhieu}"></td>
-                    <td th:text="${phieunhap.soLuong}"></td>
-                    <td th:text="${phieunhap.tongTienNhap}"></td>
-                    <td th:text="${phieunhap.nhanVien != null ? phieunhap.nhanVien.tenNhanVien : 'Chưa có nhân viên'}">
-                    </td>
-                    <td th:text="${phieunhap.nhaCungCap.tenNhaCC}"></td>
-                    <td th:text="${phieunhap.ngayTao}"></td>
-                    <td th:text="${phieunhap.ngayNhap}"></td>
-                    <td th:text="${phieunhap.trangThai == 1?'Đã thanh toán':'Chưa thanh toán'}"></td>
+                    <td th:text="${phieunhap.soLuong != null ? phieunhap.soLuong : '-'}"></td>
+                    <td th:text="${phieunhap.tongTienNhap != null ? phieunhap.tongTienNhap : '-'}"></td>
+                    <td th:text="${phieunhap.nhanVien != null ? phieunhap.nhanVien.tenNhanVien : 'Chưa có nhân viên'}"></td>
+                    <td th:text="${phieunhap.nhaCungCap != null ? phieunhap.nhaCungCap.tenNhaCC : '-'}"></td>
+                    <td th:text="${phieunhap.ngayTao != null ? phieunhap.ngayTao : '-'}"></td>
+                    <td th:text="${phieunhap.ngayNhap != null ? phieunhap.ngayNhap : '-'}"></td>
+                    <td th:text="${phieunhap.trangThai != null ? (phieunhap.trangThai == 1 ? 'Đã thanh toán' : 'Chưa thanh toán') : 'Đã huỷ'}"></td>
                     <td>
-                        <a class="btn btn-success btn-sm">Chi tiết</a>
+                        <a class="btn btn-success btn-sm" th:href="@{/phieu-nhap/chi-tiet-phieu-nhap/{id}(id=${phieunhap.id})}">Chi tiết</a>
                     </td>
                 </tr>
+                
             </table>
 
             <div>

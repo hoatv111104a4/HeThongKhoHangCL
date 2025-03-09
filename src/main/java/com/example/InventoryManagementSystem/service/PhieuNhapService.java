@@ -140,5 +140,12 @@ public class PhieuNhapService {
         Pageable pageable = PageRequest.of(page, size);
         return phieuNhapRepo.getAllPhieuNhap(pageable);
     }
+
+    public void deletePhieuNhapCtByIdPhieuNhap(Long id){
+        phieuNhapRepo.deleteByPhieuNhapId(id);
+    }
+    public void huyPhieuNhap(Long id){
+        phieuNhapRepo.deleteById(id);
+    }
     
 }

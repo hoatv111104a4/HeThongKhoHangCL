@@ -1,6 +1,8 @@
 package com.example.InventoryManagementSystem.controller;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -103,8 +105,7 @@ public class PhieuNhapController {
         model.addAttribute("nhaCungCap", nhaCungCapService.listNhaCungCap());
         model.addAttribute("nhanViens", nhanVienService.getAllNhanVien());
         List<PhieuNhapChiTiet> listPhieuNhapChiTiets = phieuNhapChiTietService.getAllPhieuNhaps();
-        model.addAttribute("listPhieuNhapChiTiets", listPhieuNhapChiTiets);
-        session.setAttribute("phieuNhapClicked", true);
+        model.addAttribute("listPhieuNhapChiTiets", listPhieuNhapChiTiets);        
         model.addAttribute("content", "adds/ThemPhieuNhap");        
         return "Home/TrangChu";
         
@@ -120,6 +121,7 @@ public class PhieuNhapController {
         NhaKho nhaKho = sanPhamNhapDTO.getNhaKho();
         PhieuNhap phieuNhap = phieuNhapService.taoPhieuNhap(session);
         phieuNhapService.themSanPhamVaPhieuNhapChiTiet(sanPhamChiTiet, phieuNhapChiTiet, nhaKho,phieuNhap);
+        redirectAttributes.addFlashAttribute("IdphieuNhap", phieuNhap.getId());
         // Lấy danh sách sản phẩm trong giỏ hàng
         List<PhieuNhapChiTiet> danhSachChiTiet = phieuNhapService.layDanhSachPhieuNhapChiTiet(phieuNhap);
 
@@ -127,7 +129,7 @@ public class PhieuNhapController {
         double tongTien = phieuNhapService.tinhTongTienGioHang(danhSachChiTiet);
 
         // Lưu tổng tiền vào RedirectAttributes để hiển thị
-        redirectAttributes.addFlashAttribute("tongTien", tongTien);
+        session.setAttribute("tongTien", tongTien);
         return "redirect:/phieu-nhap/tao-phieu-nhap";
     }
     
@@ -138,6 +140,7 @@ public class PhieuNhapController {
         phieuNhap.setNhaCungCap(nhaCungCap);      
         phieuNhapService.luuPhieuNhap(phieuNhap);
         session.removeAttribute("phieuNhap");
+        session.removeAttribute("tongTien");
         return "redirect:/phieu-nhap/hien-thi";   
     }
 
@@ -162,5 +165,32 @@ public class PhieuNhapController {
         return "redirect:/phieu-nhap/tao-phieu-nhap";
     }
 
-    
+    @GetMapping("/chi-tiet-phieu-nhap/{id}")
+    public String chiTietPhieuNhap(Model model,@PathVariable("id") Long id){
+        List<PhieuNhapChiTiet> chiTietPhieuNhapList = phieuNhapChiTietService.chiTietPhieuNhap(id);
+        model.addAttribute("chiTietPhieuNhapList", chiTietPhieuNhapList);        
+        model.addAttribute("content", "views/ChiTietPhieuNhapHienThi");        
+        return "Home/TrangChu";
+    }
+
+    @PostMapping("/huy-phieu-nhap/{id}")
+    public String huyPhieuNhap(@PathVariable("id") Long id ,Model model,HttpSession session){        
+        List<PhieuNhapChiTiet> chiTietPhieuNhapList = phieuNhapChiTietService.chiTietPhieuNhap(id);  
+        if (chiTietPhieuNhapList == null) {
+            return "redirect:/phieu-nhap/hien-thi";
+        }  
+        List<Long> idSpCtList = chiTietPhieuNhapList
+        .stream()
+        .map(chitiet -> chitiet.getSanPhamChiTiet().getId())
+        .collect(Collectors.toList());        
+        for (Long idSpCt : idSpCtList) {
+            sanPhamChiTietService.xoaCungSanPhamChiTiet(idSpCt);
+        }
+        session.removeAttribute("phieuNhap");
+        session.removeAttribute("tongTien");
+        return "redirect:/phieu-nhap/hien-thi";
+
+    }
 }
+
+    

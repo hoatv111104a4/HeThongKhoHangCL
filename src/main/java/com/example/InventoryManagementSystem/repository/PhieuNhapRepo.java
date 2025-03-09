@@ -18,4 +18,9 @@ public interface PhieuNhapRepo extends JpaRepository<PhieuNhap ,Long>{
     @Transactional
     @Query(value = "INSERT INTO phieu_nhap(ngay_tao,trang_thai) values (GETDATE(),0)",nativeQuery = true)
     void taoPhieuNhap(PhieuNhap phieuNhap);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM phieu_nhap_ct  where id_phieu_nhap = ?1",nativeQuery = true)
+    void deleteByPhieuNhapId(Long id);
 }

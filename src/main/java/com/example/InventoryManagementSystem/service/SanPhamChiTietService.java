@@ -54,4 +54,8 @@ public class SanPhamChiTietService {
         sanPhamCtRepo.deleteById(id);
     }
 
+    // public void xoaDanhSachSanPhamTrongGioHang(Integer id){
+    //     sanPhamCtRepo.deleteAllSpByIdPhieuNhapCt(id);
+    // }
+
 }

@@ -180,4 +180,6 @@ public interface SanPhamCtRepo extends JpaRepository<SanPhamChiTiet, Long> {
                         Double giaMin, Double giaMax, String tenSanPham,
                         Integer thuongHieu, Integer xuatXu, Integer congNghe, Integer swingWeight, Integer trongLuong);
 
+
+        
 }

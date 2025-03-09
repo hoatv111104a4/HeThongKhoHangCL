@@ -169,10 +169,10 @@ VALUES('nhan vien');
 
 INSERT INTO nhan_vien (ma_nhan_vien, ten_nhan_vien, ngay_sinh, gioi_tinh, so_dien_thoai, email, mat_khau, ngay_tao, ngay_sua, ngay_xoa, id_chuc_vu, trang_thai)
 VALUES
-('hoatvph53993', 'Tran Van Hoa ', '2005-06-15', 1, '0987654321', 'hoa573898@gmail.com', '123456', GETDATE(), GETDATE(), NULL, 1, 1),
-('linhtt98', 'Tran Thi Linh', '1998-02-20', 0, '0978123456', 'tranthib@example.com', '123456', GETDATE(), GETDATE(), NULL, 2, 1),
-('cuonglh92', 'Le Hoang Cuong', '1992-09-10', 1, '0968543210', 'lehoangc@example.com', '123456', GETDATE(), GETDATE(), NULL, 2, 1),
-('ducmp20', 'Pham Minh Duc', '2000-12-05', 1, '0956321789', 'phamminhd@example.com', '123456', GETDATE(), GETDATE(), NULL, 2, 1);
+('hoatvph53993', 'Tran Van Hoa ', '2005-06-15', 1, '0987654321', 'hoa573898@gmail.com', '$2a$10$6PAG2uBCLghFFRk/ymlmB.dE/gFxI9cpuFV0rjXhVOEKMUE6yw1CW', GETDATE(), GETDATE(), NULL, 1, 1),
+('linhtt98', 'Tran Thi Linh', '1998-02-20', 0, '0978123456', 'tranthib@gmail.com', '$2a$10$6PAG2uBCLghFFRk/ymlmB.dE/gFxI9cpuFV0rjXhVOEKMUE6yw1CW', GETDATE(), GETDATE(), NULL, 2, 1),
+('cuonglh92', 'Le Hoang Cuong', '1992-09-10', 1, '0968543210', 'lehoangc@gmail.com', '$2a$10$6PAG2uBCLghFFRk/ymlmB.dE/gFxI9cpuFV0rjXhVOEKMUE6yw1CW', GETDATE(), GETDATE(), NULL, 2, 1),
+('ducmp20', 'Pham Minh Duc', '2000-12-05', 1, '0956321789', 'phamminhd@gmail.com', '$2a$10$6PAG2uBCLghFFRk/ymlmB.dE/gFxI9cpuFV0rjXhVOEKMUE6yw1CW', GETDATE(), GETDATE(), NULL, 2, 1);
 
 -- Phiếu nhập 1
 INSERT INTO phieu_nhap(ma_phieu, id_nhan_vien, id_nha_cc, so_luong, tong_tien_nhap, ngay_tao, ngay_sua, ngay_xoa, ngay_nhap, trang_thai)
