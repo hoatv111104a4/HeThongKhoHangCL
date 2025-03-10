@@ -36,34 +36,35 @@ public class SanPhamChiTietController {
     }
 
     @GetMapping("/hien-thi")
-public String listSanPhamCt(Model model, @RequestParam(defaultValue = "0") int page) {
-    // Gọi hàm load sản phẩm (nếu có điều kiện tìm kiếm, các giá trị sẽ là null ban đầu)
-    loadSanPhamChiTiet(model, page, null, null, null, null, null, null, null, null);
-    
-    // Thiết lập giá trị lọc (selected) ban đầu là null
-    model.addAttribute("selectedXuatXu", null);
-    model.addAttribute("selectedThuongHieu", null);
-    model.addAttribute("selectedCongNghe", null);
-    model.addAttribute("selectedTrongLuong", null);
-    model.addAttribute("selectedSwingWeight", null);
-    
-    // Truyền danh sách filter với tên mới: listXuatXu, listThuongHieu, listCongNghe, listTrongLuong, listSwingWeight
-    model.addAttribute("listXuatXu", xuatXuService.listXuatXus());
-    model.addAttribute("listThuongHieu", thuongHieuService.listThuongHieu());
-    model.addAttribute("listCongNghe", congNgheService.listCongNghe());
-    model.addAttribute("listTrongLuong", trongLuongService.listTrongLuongs());
-    model.addAttribute("listSwingWeight", swingWeightService.listSwingweights());
-    
-    model.addAttribute("tenSanPham", null);
-    model.addAttribute("giaMin", null);
-    model.addAttribute("giaMax", null);
-    model.addAttribute("currentPage", page);
-    
-    // Xác định content view hiển thị danh sách sản phẩm
-    model.addAttribute("content", "views/SanPhamChiTietHienThi");
-    return "Home/TrangChu";
-}
+    public String listSanPhamCt(Model model, @RequestParam(defaultValue = "0") int page) {
+        // Gọi hàm load sản phẩm (nếu có điều kiện tìm kiếm, các giá trị sẽ là null ban
+        // đầu)
+        loadSanPhamChiTiet(model, page, null, null, null, null, null, null, null, null);
 
+        // Thiết lập giá trị lọc (selected) ban đầu là null
+        model.addAttribute("selectedXuatXu", null);
+        model.addAttribute("selectedThuongHieu", null);
+        model.addAttribute("selectedCongNghe", null);
+        model.addAttribute("selectedTrongLuong", null);
+        model.addAttribute("selectedSwingWeight", null);
+
+        // Truyền danh sách filter với tên mới: listXuatXu, listThuongHieu,
+        // listCongNghe, listTrongLuong, listSwingWeight
+        model.addAttribute("listXuatXu", xuatXuService.listXuatXus());
+        model.addAttribute("listThuongHieu", thuongHieuService.listThuongHieu());
+        model.addAttribute("listCongNghe", congNgheService.listCongNghe());
+        model.addAttribute("listTrongLuong", trongLuongService.listTrongLuongs());
+        model.addAttribute("listSwingWeight", swingWeightService.listSwingweights());
+
+        model.addAttribute("tenSanPham", null);
+        model.addAttribute("giaMin", null);
+        model.addAttribute("giaMax", null);
+        model.addAttribute("currentPage", page);
+
+        // Xác định content view hiển thị danh sách sản phẩm
+        model.addAttribute("content", "views/SanPhamChiTietHienThi");
+        return "Home/TrangChu";
+    }
 
     @GetMapping("/xoa-san-pham/{id}")
     public String deleteSanPham(@PathVariable("id") int id) {
@@ -72,40 +73,40 @@ public String listSanPhamCt(Model model, @RequestParam(defaultValue = "0") int p
     }
 
     @GetMapping("/tim-kiem")
-public String search(
-        @RequestParam(defaultValue = "0") int page,
-        Model model,
-        @RequestParam(required = false) Double giaMin,
-        @RequestParam(required = false) Double giaMax,
-        @RequestParam(required = false) String tenSanPham,
-        @RequestParam(required = false) Integer selectedThuongHieu,
-        @RequestParam(required = false) Integer selectedXuatXu,
-        @RequestParam(required = false) Integer selectedCongNghe,
-        @RequestParam(required = false) Integer selectedTrongLuong,
-        @RequestParam(required = false) Integer selectedSwingWeight) {
+    public String search(
+            @RequestParam(defaultValue = "0") int page,
+            Model model,
+            @RequestParam(required = false) Double giaMin,
+            @RequestParam(required = false) Double giaMax,
+            @RequestParam(required = false) String tenSanPham,
+            @RequestParam(required = false) Integer selectedThuongHieu,
+            @RequestParam(required = false) Integer selectedXuatXu,
+            @RequestParam(required = false) Integer selectedCongNghe,
+            @RequestParam(required = false) Integer selectedTrongLuong,
+            @RequestParam(required = false) Integer selectedSwingWeight) {
 
-    loadSanPhamChiTiet(model, page, tenSanPham, giaMin, giaMax, selectedThuongHieu, selectedXuatXu,
-            selectedCongNghe, selectedSwingWeight, selectedTrongLuong);
+        loadSanPhamChiTiet(model, page, tenSanPham, giaMin, giaMax, selectedThuongHieu, selectedXuatXu,
+                selectedCongNghe, selectedSwingWeight, selectedTrongLuong);
 
-    // Truyền lại giá trị lọc để giữ trạng thái khi chuyển trang
-    model.addAttribute("tenSanPham", tenSanPham);
-    model.addAttribute("giaMin", giaMin);
-    model.addAttribute("giaMax", giaMax);
-    model.addAttribute("selectedThuongHieu", selectedThuongHieu);
-    model.addAttribute("selectedXuatXu", selectedXuatXu);
-    model.addAttribute("selectedCongNghe", selectedCongNghe);
-    model.addAttribute("selectedTrongLuong", selectedTrongLuong);
-    model.addAttribute("selectedSwingWeight", selectedSwingWeight);
+        // Truyền lại giá trị lọc để giữ trạng thái khi chuyển trang
+        model.addAttribute("tenSanPham", tenSanPham);
+        model.addAttribute("giaMin", giaMin);
+        model.addAttribute("giaMax", giaMax);
+        model.addAttribute("selectedThuongHieu", selectedThuongHieu);
+        model.addAttribute("selectedXuatXu", selectedXuatXu);
+        model.addAttribute("selectedCongNghe", selectedCongNghe);
+        model.addAttribute("selectedTrongLuong", selectedTrongLuong);
+        model.addAttribute("selectedSwingWeight", selectedSwingWeight);
 
-    // Truyền danh sách filter
-    model.addAttribute("listCongNghe", congNgheService.listCongNghe());
-    model.addAttribute("listTrongLuong", trongLuongService.listTrongLuongs());
-    model.addAttribute("listXuatXu", xuatXuService.listXuatXus());
-    model.addAttribute("listSwingWeight", swingWeightService.listSwingweights());
-    model.addAttribute("listThuongHieu", thuongHieuService.listThuongHieu());
-    model.addAttribute("content", "views/SanPhamChiTietHienThi");
-    return "Home/TrangChu";
-}
+        // Truyền danh sách filter
+        model.addAttribute("listCongNghe", congNgheService.listCongNghe());
+        model.addAttribute("listTrongLuong", trongLuongService.listTrongLuongs());
+        model.addAttribute("listXuatXu", xuatXuService.listXuatXus());
+        model.addAttribute("listSwingWeight", swingWeightService.listSwingweights());
+        model.addAttribute("listThuongHieu", thuongHieuService.listThuongHieu());
+        model.addAttribute("content", "views/SanPhamChiTietHienThi");
+        return "Home/TrangChu";
+    }
 
     private void loadSanPhamChiTiet(Model model, int page, String tenSanPham, Double giaMin, Double giaMax,
             Integer thuongHieu, Integer xuatXu, Integer congNghe, Integer swingWeight, Integer trongLuong) {

@@ -3,6 +3,7 @@ package com.example.InventoryManagementSystem.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.InventoryManagementSystem.entity.NhanVien;
@@ -21,6 +22,6 @@ public class NhanVienService {
     }
 
     public List<NhanVien> getAllNhanVien(){
-        return nhanVienRepoITF.findAll();
+        return nhanVienRepoITF.findAll(Sort.by("ngayTao").descending());
     }
 }

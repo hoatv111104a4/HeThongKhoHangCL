@@ -47,28 +47,37 @@
 <body>
     <div th:fragment="content">
         <div class="container-fluid">
-            <h2>Danh sách nhà kho</h2>
+            <h2>Danh sách nhân viên</h2>
             <table class="table table-hover mt-3" border="1">
                 <tr>
                     <th>STT</th>
-                    <th>Mã kho</th>
-                    <th>Khu vực kho</th>
-                    <th>Sức chứa</th>
-                    <th>Ngày hoạt động</th>
-                    <th>Ngày dừng hoạt động</th>                    
-                    <th>Hành động</th>                 
+                    <th>Mã nhân viên</th>
+                    <th>Tên nhân viên</th>
+                    <th>Email</th>
+                    <th>Số điện thoai</th>
+                    <th>Chức vụ</th>
+                    <th>Ngày làm việc</th>
+                    <th>Ngày nghỉ việc</th>       
+                    <th>Hành động</th>  
+                    <th>Lịch sử làm việc</th>               
                 </tr>
-                <tr th:each=" nhakho,status: ${nhaKhoList}">
-                    <td th:text="${nhakho.id}" hidden></td>
+                <tr th:each=" nhanvien,status: ${nhanVienList}">
+                    <td th:text="${nhanvien.id}" hidden></td>
                     <td th:text="${status.index + 1}"></td>
-                    <td th:text="${nhakho.maKho}"></td>
-                    <td th:text="${nhakho.khuVucKho}"></td>
-                    <td th:text="${nhakho.sucChua}"></td>
-                    <td th:text="${nhakho.ngayTao}"></td>
-                    <td th:text="${nhakho.ngayXoa == null ? 'Đang hoạt động' :nhakho.ngayXoa}"></td>
+                    <td th:text="${nhanvien.maNhanVien}"></td>
+                    <td th:text="${nhanvien.tenNhanVien}"></td>
+                    <td th:text="${nhanvien.email}"></td>
+                    <td th:text="${nhanvien.soDienThoai}"></td>
+                    <td th:text="${nhanvien.chucVu.tenChucVu}"></td>
+                    <td th:text="${nhanvien.ngayTao}"></td>
+                    <td th:text="${nhanvien.ngayXoa !=null ? 'nhanvien.ngayXoa':'Đang làm việc'}"></td>   
+                    <td class="d-flex gap-2">
+                        <a class="btn btn-success btn-sm">Chi tiết</a>
+                        <a class="btn btn-danger btn-sm">Xoá</a>                        
+                    </td>            
                     <td>
-                        <a th:href="@{/nha-kho/chi-tiet-nha-kho/{id}(id=${nhakho.id})}" class="btn btn-danger">Chi tiết kho</a>
-                    </td>
+                        <a class="btn btn-primary btn-sm">Xem lịch sử</a>
+                    </td>                      
                 </tr>
             </table>
             
