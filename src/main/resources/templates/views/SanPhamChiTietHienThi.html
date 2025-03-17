@@ -176,7 +176,7 @@
                         <td th:text="${spct.xuatXu}"></td>
                         <td th:text="${spct.giaTien}"></td>
                         <td th:text="${spct.soLuong}"></td>
-                        <td th:text="${spct.trangThai}"></td>
+                        <td th:text="${spct.trangThai== 1?'Đang bán':'Ngưng bán'}"></td>
                         <td>
                             <a class="btn btn-info" th:href="@{/san-pham-ct/xoa-san-pham/{id}(id=${spct.id})}">Xoá</a>
                         </td>

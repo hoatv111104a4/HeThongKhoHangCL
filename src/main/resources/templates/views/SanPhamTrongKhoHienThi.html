@@ -48,7 +48,7 @@
 </head>
 <body>
     <div class="container-fluid" th:fragment="content">
-        <h2>Danh sách sản phẩm </h2>
+        <h2>Danh sách sản phẩm trong kho </h2>
 
         <!-- Form tìm kiếm -->
         <form th:action="@{/nha-kho/tim-kiem/{id}(id=${idNhaKho})}" method="get" class="search-form">
@@ -177,7 +177,7 @@
                         <td th:text="${spct.xuatXu}"></td>
                         <td th:text="${spct.giaTien}"></td>
                         <td th:text="${spct.soLuong}"></td>
-                        <td th:text="${spct.trangThai}"></td>
+                        <td th:text="${spct.trangThai == 1?'Đang bán':'Ngưng bán'}"></td>
                         
                     </tr>
                 </tbody>

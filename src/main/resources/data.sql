@@ -271,4 +271,27 @@ VALUES
 (6, 24, 3, 4, 2500000, 10000000, GETDATE(), NULL, 1);
 
 
+INSERT INTO khach_hang (ten_khach_hang, so_dien_thoai, email, dia_chi, gioi_tinh, ngay_tao, ngay_sua, ngay_xoa, trang_thai)
+VALUES 
+('Nguyen Van An', '0356789123', 'an@gmail.com', 'Ha Noi', 1, GETDATE(), GETDATE(), NULL, 1),
+('Le Thi Binh', '0367891234', 'binh@gmail.com', 'TP Ho Chi Minh', 0, GETDATE(), GETDATE(), NULL, 1),
+('Hoang Minh Chau', '0378912345', 'chau@gmail.com', 'Da Nang', 1, GETDATE(), GETDATE(), NULL, 1),
+('Pham Quoc Dat', '0389123456', 'dat@gmail.com', 'Hai Phong', 1, GETDATE(), GETDATE(), NULL, 1),
+('Truong Thi Hoa', '0391234567', 'hoa@gmail.com', 'Can Tho', 0, GETDATE(), GETDATE(), NULL, 1),
+('Vo Van Khoa', '0312345678', 'khoa@gmail.com', 'Nha Trang', 1, GETDATE(), GETDATE(), NULL, 1),
+('Bui Thi Lan', '0323456789', 'lan@gmail.com', 'Hue', 0, GETDATE(), GETDATE(), NULL, 1),
+('Dang Thanh Long', '0334567891', 'long@gmail.com', 'Quang Ninh', 1, GETDATE(), GETDATE(), NULL, 1),
+('Ly Thi Mai', '0345678912', 'mai@gmail.com', 'Binh Duong', 0, GETDATE(), GETDATE(), NULL, 1),
+('Nguyen Hoang Nam', '0356789123', 'nam@gmail.com', 'Dong Nai', 1, GETDATE(), GETDATE(), NULL, 1),
+('Do Thi Ngoc', '0367891234', 'ngoc@gmail.com', 'Bac Ninh', 0, GETDATE(), GETDATE(), NULL, 1),
+('Cao Van Phuc', '0378912345', 'phuc@gmail.com', 'Thanh Hoa', 1, GETDATE(), GETDATE(), NULL, 1),
+('Tran Thi Quynh', '0389123456', 'quynh@gmail.com', 'Nghe An', 0, GETDATE(), GETDATE(), NULL, 1),
+('Pham Dinh Sang', '0391234567', 'sang@gmail.com', 'Vung Tau', 1, GETDATE(), GETDATE(), NULL, 1),
+('Vo Thi Thao', '0312345678', 'thao@gmail.com', 'Long An', 0, GETDATE(), GETDATE(), NULL, 1),
+('Nguyen Xuan Tam', '0323456789', 'tam@gmail.com', 'Lam Dong', 1, GETDATE(), GETDATE(), NULL, 1),
+('Le Thi Uyen', '0334567891', 'uyen@gmail.com', 'Tien Giang', 0, GETDATE(), GETDATE(), NULL, 1),
+('Hoang Van Vu', '0345678912', 'vu@gmail.com', 'Bac Giang', 1, GETDATE(), GETDATE(), NULL, 1),
+('Pham Thanh Yen', '0356789123', 'yen@gmail.com', 'Ha Nam', 0, GETDATE(), GETDATE(), NULL, 1);
+
+
 
