@@ -58,7 +58,7 @@ public class ThuongHieuController {
         // Lưu file ảnh vào server
         if (!file.isEmpty()) {
             try {
-                String uploadDir = "uploads/thuong-hieu/";
+                String uploadDir = "D:/Java5/PersionProject/InventoryManagementSystem/uploads/thuong-hieu/";
                 Files.createDirectories(Paths.get(uploadDir)); 
                 String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
                 Path filePath = Paths.get(uploadDir + fileName);

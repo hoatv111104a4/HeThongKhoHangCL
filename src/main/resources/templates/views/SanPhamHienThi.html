@@ -76,17 +76,17 @@
                         <td th:text="${sanpham.id}" hidden="true"></td>
                         <td th:text="${status.index + 1}"></td>
                         <td>
-                            <img th:src="@{/uploads/san-pham/{img}(img=${sanPham.hinhAnh})}" width="50px"
-                                class="rounded" alt="Ảnh sản phẩm" />
-                        </td>
+                            <img th:src="@{/uploads/thuong-hieu/{img}(img=${sanpham.hinhAnh})}" width="70"
+                                class="rounded" alt="Ảnh thương hiệu" />
+                        </td>                                          
                         <td th:text="${sanpham.maSanPham}"></td>
                         <td th:text="${sanpham.tenSanPham}"></td>
                         <td th:text="${#dates.format(sanpham.ngayTao,'yyyy-MM-dd') }"></td>
-                        <td th:text="${sanpham.trangThai ==1?'Hoạt động':'Ngưng bán'}"></td>
+                        <td th:text="${sanpham.trangThai ==1?'Hoạt động':'Ngưng bán'}"></td>                        
                         <td>
                             <a type="submit" class="btn btn-info"
                                 th:href="@{/san-pham/xoa-san-pham/{id}(id=${sanpham.id})}">Xoá</a>
-                        </td>
+                        </td>                       
 
                     </tr>
                 </table>

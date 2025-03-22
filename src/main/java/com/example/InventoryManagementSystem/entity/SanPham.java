@@ -35,7 +35,7 @@ public class SanPham {
 
     public SanPham(Integer id, String maSanPham,
             @Size(min = 2, max = 30, message = "Vui lòng nhập tên sản phầm từ 2 đến 30 kí tự") String tenSanPham,
-            Date ngayTao, Date ngaySua, Date ngayXoa, Integer trangThai) {
+            Date ngayTao, Date ngaySua, Date ngayXoa, Integer trangThai, String hinhAnh) {
         this.id = id;
         this.maSanPham = maSanPham;
         this.tenSanPham = tenSanPham;
@@ -43,6 +43,7 @@ public class SanPham {
         this.ngaySua = ngaySua;
         this.ngayXoa = ngayXoa;
         this.trangThai = trangThai;
+        this.hinhAnh = hinhAnh;
     }
 
     
